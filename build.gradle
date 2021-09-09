@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'idea'
+}
+
+group 'com.zendesk.challenge'
+version '1.0'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+ext {
+    lombokVersion = '1.18.20'
+    junitVersion = '5.7.2'
+    jacksonVersion = "2.13.0-rc1"
+    mockitoVersion = "3.11.2"
+}
+
+dependencies {
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+
+}
+
+application {
+    mainClass = 'com.zendesk.challenge.App'
+}
+
+run {
+    standardInput = System.in
+}
+
+test {
+    useJUnitPlatform()
+}
